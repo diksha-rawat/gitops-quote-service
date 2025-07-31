@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote-service
+  labels:
+    app: quote-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quote-service
+  template:
+    metadata:
+      labels:
+        app: quote-service
+    spec:
+      containers:
+        - name: quote-service
+          image: dikshacodes/flask-microservice:latest
+          ports:
+            - containerPort: 5000
