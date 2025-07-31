@@ -1,109 +1,120 @@
-# 🧠 GitOps Quote Service
+🎵 GitOps Quote Service
+This is a simple Flask-based microservice that returns a random quote when accessed via an API endpoint. The project demonstrates how to containerize a Python app using Docker and deploy it to a local Kubernetes cluster using Minikube. It follows GitOps principles by keeping all infrastructure and app definitions in version control.
 
-A simple Flask microservice that returns a random motivational quote. Designed as a DevOps-ready application to demonstrate containerization, Kubernetes deployment, and GitOps principles.
+🚀 Features
+REST API endpoint to fetch a random quote.
 
----
+Dockerized Flask application.
 
-## 🚀 Features
+Kubernetes manifests for deployment and service.
 
-- Flask REST API  
-- Random quote generator  
-- Dockerized for easy deployment  
-- Kubernetes manifests for deployment  
-- Minikube setup for local testing  
-- GitOps-friendly project structure  
+GitOps-compatible structure.
 
----
+Easily extendable for CI/CD and GitOps tools like ArgoCD.
 
-## 📁 Project Structure
+🛠️ Technologies Used
+Python 3
 
-gitops-quote-service/
+Flask
+
+Docker
+
+Kubernetes
+
+Minikube
+
+📁 Project Structure
+bash
+Copy
+Edit
+.
 ├── app.py
 ├── Dockerfile
 ├── requirements.txt
+├── .env
+├── .gitignore
 ├── README.md
-├── k8s-manifests/
-│ ├── deployment.yaml
-│ └── service.yaml
-
-yaml
+└── k8s
+    ├── deployment.yaml
+    └── service.yaml
+🧪 Running the App
+1. Clone the Repository
+bash
 Copy
 Edit
-
----
-
-## 🧪 Local Development
-
-### Prerequisites
-
-- Python 3.8+
-- `pip`
-- Docker
-
-### Install dependencies
-
-```bash
+git clone https://github.com/diksha-rawat/gitops-quote-service.git
+cd gitops-quote-service
+2. (Optional) Create a Virtual Environment
+bash
+Copy
+Edit
+python3 -m venv venv
+source venv/bin/activate
+3. Install Dependencies
+bash
+Copy
+Edit
 pip install -r requirements.txt
-Run locally
+4. Run the Flask App
 bash
 Copy
 Edit
 python app.py
 🐳 Run with Docker
-Build Docker image
+1. Build Docker Image
 bash
 Copy
 Edit
 docker build -t flask-microservice .
-Run container
+2. Run Docker Container
 bash
 Copy
 Edit
 docker run -p 5000:5000 flask-microservice
-Visit: http://localhost:5000/quote
-
-☸️ Deploy to Kubernetes using Minikube
-Step 1: Start Minikube
+☘️ Deploy on Minikube
+1. Start Minikube
 bash
 Copy
 Edit
 minikube start
-If you get a segmentation fault or want to use Docker driver:
-
+2. Enable Docker Environment
 bash
 Copy
 Edit
-minikube start --driver=docker
-Step 2: Enable Docker environment for Minikube (optional)
+eval $(minikube -p minikube docker-env)
+3. Build Docker Image Inside Minikube
 bash
 Copy
 Edit
-eval $(minikube docker-env)
 docker build -t flask-microservice .
-Step 3: Apply Kubernetes manifests
+4. Apply Kubernetes Manifests
 bash
 Copy
 Edit
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
-Step 4: Access the service
+5. Access the App
 bash
 Copy
 Edit
-minikube service flask-service
-This will open the app in your default browser. If the service name is different, replace flask-service accordingly.
+minikube service quote-service
+📄 .env File (Optional)
+Create a .env file in the root directory if you plan to use environment variables later.
 
-🛠️ GitOps Ready
-This project is structured to support GitOps workflows using tools like ArgoCD or Flux. Kubernetes manifests are kept declaratively under the k8s/ directory.
-
-📜 License
-MIT License
-
-💡 Author
-Diksha Rawat
-
-vbnet
+ini
 Copy
 Edit
+# Example
+APP_PORT=5000
+🧾 .gitignore
+bash
+Copy
+Edit
+venv/
+__pycache__/
+.env
+👩‍💻 Author
+Diksha Rawat — Passionate about DevOps and building scalable automation pipelines.
 
-Let me know when you want to add CI/CD or ArgoCD GitOps deployment steps.
+📜 License
+This project is licensed under the MIT License.
